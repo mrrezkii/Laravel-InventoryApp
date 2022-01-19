@@ -20,6 +20,8 @@ class CreateBarangsTable extends Migration
             $table->foreign('kode_kategori')->references('kode_kategori')->on('kategori');
             $table->string('nama_barang');
             $table->decimal('harga_barang');
+            $table->string('gambar_barang');
+            $table->text('deskripsi_barang');
             $table->date('kadaluarsa_barang');
             $table->timestamps();
         });
