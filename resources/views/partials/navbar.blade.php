@@ -19,24 +19,24 @@
 
 
     <li class="nav-item ml-2">
-        <a class="nav-link" href="{{ url('/dashboard') }}">
+        <a class="nav-link" href="{{ url('/category') }}">
             <img src="{{ url('/images/icon/ic_category.svg') }}" class="img-fluid" width="24px" alt="home">
             <span
-                class="text-grey hover-underline-animation {{ ($active === "kategori") ? 'active' : '' }}">Data Kategori</span></a>
+                class="text-grey hover-underline-animation {{ ($active === "category") ? 'active' : '' }}">Data Kategori</span></a>
     </li>
 
     <li class="nav-item ml-2">
-        <a class="nav-link" href="{{ url('/dashboard') }}">
+        <a class="nav-link" href="{{ url('/goods') }}">
             <img src="{{ url('/images/icon/ic_goods.svg') }}" class="img-fluid" width="24px" alt="home">
             <span
-                class="text-grey hover-underline-animation {{ ($active === "barang") ? 'active' : '' }}">Data Barang</span></a>
+                class="text-grey hover-underline-animation {{ ($active === "goods") ? 'active' : '' }}">Data Barang</span></a>
     </li>
 
     <li class="nav-item ml-2">
-        <a class="nav-link" href="{{ url('/dashboard') }}">
+        <a class="nav-link" href="{{ url('/recap') }}">
             <img src="{{ url('/images/icon/ic_recap.svg') }}" class="img-fluid" width="24px" alt="home">
             <span
-                class="text-grey hover-underline-animation {{ ($active === "rekap") ? 'active' : '' }}">Data Rekap</span></a>
+                class="text-grey hover-underline-animation {{ ($active === "recap") ? 'active' : '' }}">Data Rekap</span></a>
     </li>
 
 
