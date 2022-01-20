@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DonorNotes;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class CategoryController extends Controller
 {
@@ -12,6 +15,18 @@ class CategoryController extends Controller
             'title' => 'Kategori',
             'active' => 'category',
         ]);
+    }
+
+    public function data()
+    {
+        $model = Kategori::all();
+        return DataTables::of($model)
+            ->addIndexColumn()
+            ->addColumn('action', function ($model) {
+                return (string)view('pages.category.action', ['model' => $model]);
+            })
+            ->rawColumns(['action'])
+            ->toJson();
     }
 
     public function create()
