@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GoodsController;
+use App\Http\Controllers\RecapController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,44 +23,9 @@ Route::get('/', function () {
     return redirect('/dashboard');
 });
 
-Route::get('/dashboard', function () {
-    return view('pages.dashboard.index', [
-        'title' => 'Dashboard',
-        'active' => 'dashboard',
-    ]);
-});
-
-Route::get('/category', function () {
-    return view('pages.category.index', [
-        'title' => 'Kategori',
-        'active' => 'category',
-    ]);
-});
-
-Route::get('/goods', function () {
-    return view('pages.goods.index', [
-        'title' => 'Barang',
-        'active' => 'goods',
-    ]);
-});
-
-Route::get('/recap', function () {
-    return view('pages.recap.index', [
-        'title' => 'Rekap',
-        'active' => 'recap',
-    ]);
-});
-
-Route::get('/account', function () {
-    return view('pages.account.index', [
-        'title' => 'Akun',
-        'active' => 'account',
-    ]);
-});
-
-Route::get('/about', function () {
-    return view('pages.about.index', [
-        'title' => 'Tentang',
-        'active' => 'about',
-    ]);
-});
+Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::resource('/category', CategoryController::class);
+Route::resource('/goods', GoodsController::class);
+Route::resource('/recap', RecapController::class);
+Route::get('/account', [AccountController::class, 'index']);
+Route::get('/about', [AboutController::class, 'index']);
