@@ -27,6 +27,7 @@ Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::resource('/category', CategoryController::class);
 Route::get('/categories/data', [CategoryController::class, 'data'])->name('category.data');
 Route::resource('/goods', GoodsController::class);
+Route::get('/goodss/data', [GoodsController::class, 'data'])->name('goods.data');
 Route::resource('/recap', RecapController::class);
 Route::get('/account', [AccountController::class, 'index']);
 Route::get('/about', [AboutController::class, 'index']);

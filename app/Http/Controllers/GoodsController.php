@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class GoodsController extends Controller
 {
@@ -13,6 +15,18 @@ class GoodsController extends Controller
             'title' => 'Barang',
             'active' => 'goods',
         ]);
+    }
+
+    public function data()
+    {
+        $model = Barang::all();
+        return DataTables::of($model)
+            ->addIndexColumn()
+            ->addColumn('action', function ($model) {
+                return (string)view('pages.goods.action', ['model' => $model]);
+            })
+            ->rawColumns(['action'])
+            ->toJson();
     }
 
     public function create()
