@@ -24,7 +24,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
-Route::resource('/category', CategoryController::class);
+Route::resource('/category', CategoryController::class)->except(['show']);;
 Route::get('/categories/data', [CategoryController::class, 'data'])->name('category.data');
 Route::resource('/goods', GoodsController::class);
 Route::get('/goodss/data', [GoodsController::class, 'data'])->name('goods.data');

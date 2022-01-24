@@ -32,12 +32,22 @@ class CategoryController extends Controller
 
     public function create()
     {
-        dd('create');
+        return view('pages.category.create', [
+            'title' => 'Tambah Kategori',
+            'active' => 'category',
+        ]);
     }
 
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'kode_kategori' => 'required|max:255',
+            'nama_kategori' => 'required|max:255',
+        ]);
+
+        DB::table('kategori')->insert($validateData);
+
+        return redirect('/category')->with('info', "Kategori berhasil ditambah");
     }
 
     public function show($id)
@@ -75,7 +85,5 @@ class CategoryController extends Controller
         } catch (\Exception $e) {
             return redirect('/category')->with('info', "Kategori gagal dihapus");
         }
-
-
     }
 }

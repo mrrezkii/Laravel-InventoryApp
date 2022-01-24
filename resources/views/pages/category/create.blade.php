@@ -17,17 +17,16 @@
             <h3 class="text-blue font-weight-bold mt-5 mb-5">
                 <a class="text-decoration-none" href="{{ url()->previous() }}"><i
                         class="fas fa-arrow-left text-red"></i>&emsp;&emsp;</a>
-                Edit {{ $data->nama_kategori }}
+                Tambah Kategori
             </h3>
-            <form action="{{ url("/category/$data->id_kategori") }}" method="POST">
+            <form action="{{ url("/category") }}" method="POST">
                 @csrf
-                @method('PUT')
                 <div class="form-group mb-3">
                     <label for="kode_kategori" class="text-title1 text-blue">Kode Kategori</label>
                     <input type="text"
                            class="form-control mt-1 text-title1 text-blue @error('kode_kategori') is-invalid @enderror"
                            id="kode_kategori" name="kode_kategori"
-                           placeholder="Kode Kategori" required value="{{ $data->kode_kategori  }}">
+                           placeholder="Kode Kategori" required value="{{ old('kode_kategori')  }}">
                     @error('kode_kategori')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -39,7 +38,7 @@
                     <input type="text"
                            class="form-control mt-1 text-title1 text-blue @error('nama_kategori') is-invalid @enderror"
                            id="nama_kategori" name="nama_kategori"
-                           placeholder="Nama Kategori" required value="{{ $data->nama_kategori  }}">
+                           placeholder="Nama Kategori" required value="{{ old('nama_kategori')  }}">
                     @error('nama_kategori')
                     <div class="invalid-feedback">
                         {{ $message }}
