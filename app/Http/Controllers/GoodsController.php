@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -25,7 +26,16 @@ class GoodsController extends Controller
             ->addColumn('action', function ($model) {
                 return (string)view('pages.goods.action', ['model' => $model]);
             })
-            ->rawColumns(['action'])
+            ->addColumn('harga_barang', function ($model) {
+                return "Rp " . number_format($model->harga_barang, 2, ',', '.');
+            })
+            ->addColumn('gambar_barang', function ($model) {
+                return '<img src="' . $model->gambar_barang . '" height="50px">';
+            })
+            ->addColumn('kadaluarsa_barang', function ($model) {
+                return Carbon::parse($model->kadaluarsa_barang)->format('d-m-y');
+            })
+            ->rawColumns(['action', 'gambar_barang'])
             ->toJson();
     }
 

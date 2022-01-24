@@ -4,8 +4,8 @@
 @endsection
 @section('container')
     <div class="row">
-        <div class="col-md-10 offset-md-1 mt-5">
-            @if(session()->has('info'))
+        @if(session()->has('info'))
+            <div class="col-md-10 offset-md-1 mt-5">
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
                     <ul>
                         {{ session('info') }}
@@ -14,15 +14,15 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-            @endif
-        </div>
-        <div class="col-md-10 offset-md-1 mt-5 bg-white pt-2 rounded">
+            </div>
+        @endif
+        <div class="col-md-12 mt-5 bg-white pt-2 rounded">
             <a href="{{ url('/category/create') }}" class="btn btn-success float-right mb-3">
                 <i class="fas fa-plus-circle"></i>
                 Tambahkan
             </a>
         </div>
-        <div class="col-md-10 offset-md-1 bg-white p-5 rounded">
+        <div class="col-md-12 p-5 bg-white rounded">
             <table id="myTable" class="table table-stripped text-grey" width="100%">
                 <thead>
                 <tr>
