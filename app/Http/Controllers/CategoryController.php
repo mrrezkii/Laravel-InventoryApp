@@ -69,6 +69,13 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        //
+        try {
+            DB::table('kategori')->where('id_kategori', '=', $id)->delete();
+            return redirect('/category')->with('info', "Kategori berhasil dihapus");
+        } catch (\Exception $e) {
+            return redirect('/category')->with('info', "Kategori gagal dihapus");
+        }
+
+
     }
 }
