@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\DonorNotes;
-use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
@@ -20,7 +19,7 @@ class CategoryController extends Controller
 
     public function data()
     {
-        $model = Kategori::all();
+        $model = DB::table('kategori')->get();
         return DataTables::of($model)
             ->addIndexColumn()
             ->addColumn('action', function ($model) {

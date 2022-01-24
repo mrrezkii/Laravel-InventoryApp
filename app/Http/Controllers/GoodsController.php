@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Barang;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
 class GoodsController extends Controller
@@ -20,7 +20,7 @@ class GoodsController extends Controller
 
     public function data()
     {
-        $model = Barang::all();
+        $model = DB::table('barang')->get();
         return DataTables::of($model)
             ->addIndexColumn()
             ->addColumn('action', function ($model) {
@@ -41,12 +41,37 @@ class GoodsController extends Controller
 
     public function create()
     {
-        dd('create');
+        $dataKategori = DB::table('kategori')->get();
+        return view('pages.goods.create', [
+            'title' => 'Tambah Barang',
+            'active' => 'goods',
+            'dataKategori' => $dataKategori
+        ]);
     }
 
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'kode_barang' => 'required|max:255',
+            'kode_kategori' => 'required|max:255',
+            'nama_barang' => 'required|max:255',
+            'harga_barang' => 'required|max:255',
+            'gambar_barang' => 'required|mimes:jpeg,png,jpg,gif,svg',
+            'deskripsi_barang' => 'required',
+            'kadaluarsa_barang' => 'required|max:255',
+        ]);
+
+        $gambarBarangFile = $request->file('gambar_barang');
+        $gambarBarangName = time() . "_" . $gambarBarangFile->getClientOriginalName();
+        $gambarBarangPath = "media/barang";
+
+        $gambarBarangFile->move($gambarBarangPath, $gambarBarangName);
+
+        $validateData['gambar_barang'] = "/$gambarBarangPath/$gambarBarangName";
+
+        DB::table('barang')->insert($validateData);
+
+        return redirect('/goods')->with('info', "Barang berhasil ditambah");
     }
 
     public function show($id)

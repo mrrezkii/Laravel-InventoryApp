@@ -4,6 +4,18 @@
 @endsection
 @section('container')
     <div class="row">
+        @if(session()->has('info'))
+            <div class="col-md-10 offset-md-1 mt-5">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <ul>
+                        {{ session('info') }}
+                    </ul>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        @endif
         <div class="col-md-12 mt-5 bg-white pt-2 rounded">
             <a href="{{ url('/goods/create') }}" class="btn btn-success float-right mb-3">
                 <i class="fas fa-plus-circle"></i>

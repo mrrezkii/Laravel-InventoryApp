@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rekap;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class RecapController extends Controller
@@ -19,7 +19,7 @@ class RecapController extends Controller
 
     public function data()
     {
-        $model = Rekap::all();
+        $model = DB::table('rekap')->get();
         return DataTables::of($model)
             ->addIndexColumn()
             ->addColumn('action', function ($model) {
