@@ -1,4 +1,7 @@
 @extends('layouts.main')
+@section('custom-head')
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.css"/>
+@endsection
 @section('container')
     <div class="row">
         <div class="col-md-10 offset-md-1 mt-5 ">
@@ -7,7 +10,7 @@
             </h3>
         </div>
         <div class="col-md-10 offset-md-1 ">
-            <table id="myTable" class="table table-stripped text-grey">
+            <table id="myTable" class="table table-stripped text-grey" width="100%">
                 <thead>
                 <tr>
                     <th>No.</th>
@@ -31,6 +34,7 @@
             processing: true,
             serverSide: true,
             "scrollX": true,
+            responsive: true,
             ajax: '{{ route('category.data') }}',
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
