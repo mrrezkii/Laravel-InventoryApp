@@ -34,7 +34,7 @@ class GoodsController extends Controller
                 return '<img src="' . $model->gambar_barang . '" height="50px">';
             })
             ->addColumn('kadaluarsa_barang', function ($model) {
-                return Carbon::parse($model->kadaluarsa_barang)->format('d-m-y');
+                return Carbon::parse($model->kadaluarsa_barang)->format('d-m-yy');
             })
             ->rawColumns(['action', 'gambar_barang'])
             ->toJson();
@@ -82,12 +82,46 @@ class GoodsController extends Controller
 
     public function edit($id)
     {
-        //
+        $data = DB::table('barang')->where('kode_barang', '=', $id)->first();
+        $dataKategori = DB::table('kategori')->get();
+        return view('pages.goods.edit', [
+            'title' => 'Tambah Barang',
+            'active' => 'goods',
+            'data' => $data,
+            'dataKategori' => $dataKategori
+        ]);
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'kode_barang' => 'required|max:255',
+            'kode_kategori' => 'required|max:255',
+            'nama_barang' => 'required|max:255',
+            'harga_barang' => 'required|max:255',
+            'gambar_barang' => 'mimes:jpeg,png,jpg,gif,svg',
+            'deskripsi_barang' => 'required',
+            'kadaluarsa_barang' => 'required|max:255',
+        ]);
+
+        if ($request->gambar_barang != null) {
+            $data = DB::table('barang')->where('id_barang', '=', $id)->get();
+            if (File::exists(public_path($data[0]->gambar_barang))) {
+                File::delete(public_path($data[0]->gambar_barang));
+            }
+
+            $gambarBarangFile = $request->file('gambar_barang');
+            $gambarBarangName = time() . "_" . $gambarBarangFile->getClientOriginalName();
+            $gambarBarangPath = "media/barang";
+
+            $gambarBarangFile->move($gambarBarangPath, $gambarBarangName);
+
+            $validateData['gambar_barang'] = "/$gambarBarangPath/$gambarBarangName";
+        }
+
+        DB::table('barang')->where('id_barang', '=', $id)->update($validateData);
+
+        return redirect('/goods')->with('info', "Barang berhasil ditambah");
     }
 
     public function destroy($id)

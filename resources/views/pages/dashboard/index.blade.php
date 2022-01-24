@@ -48,7 +48,7 @@
                             <h2 class="m-auto text-white">{{ $stok->total }}</h2>
                             <p class="m-auto text-white">item</p>
                         </div>
-                        <h3 class="text-blue font-weight-bold m-auto">{{ $stok->nama_kategori }}</h3>
+                        <h5 class="text-blue font-weight-bold m-auto">{{ $stok->nama_kategori }}</h5>
                     </div>
                 @endforeach
             </div>
