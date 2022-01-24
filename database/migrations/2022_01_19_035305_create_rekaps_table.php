@@ -16,12 +16,12 @@ class CreateRekapsTable extends Migration
         Schema::create('rekap', function (Blueprint $table) {
             $table->id('id_rekap');
             $table->string('kode_barang');
-            $table->foreign('kode_barang')->references('kode_barang')->on('barang');
+            $table->foreign('kode_barang')->references('kode_barang')->on('barang')->onUpdate('cascade')->onDelete('cascade');
             $table->date('tanggal_rekap');
             $table->integer('stok_awal_rekap');
             $table->integer('stok_akhir_rekap');
             $table->string('kode_status_rekap');
-            $table->foreign('kode_status_rekap')->references('kode_status_rekap')->on('status_rekap');
+            $table->foreign('kode_status_rekap')->references('kode_status_rekap')->on('status_rekap')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
