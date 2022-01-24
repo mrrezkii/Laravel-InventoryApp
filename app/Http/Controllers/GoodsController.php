@@ -31,7 +31,7 @@ class GoodsController extends Controller
 
     public function create()
     {
-        //
+        dd('create');
     }
 
     public function store(Request $request)

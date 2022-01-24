@@ -4,10 +4,16 @@
 @endsection
 @section('container')
     <div class="row">
+        {{--        <div class="col-md-10 offset-md-1 mt-1 ">--}}
+        {{--            <h3 class="text-blue font-weight-bold">--}}
+        {{--                Data Kategori--}}
+        {{--            </h3>--}}
+        {{--        </div>--}}
         <div class="col-md-10 offset-md-1 mt-5 ">
-            <h3 class="text-blue font-weight-bold">
-                Data Kategori
-            </h3>
+            <a href="{{ url('/category/create') }}" class="btn btn-success float-right mb-3">
+                <i class="fas fa-plus-circle"></i>
+                Tambahkan
+            </a>
         </div>
         <div class="col-md-10 offset-md-1 ">
             <table id="myTable" class="table table-stripped text-grey" width="100%">
