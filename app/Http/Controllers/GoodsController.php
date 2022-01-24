@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
@@ -91,6 +92,16 @@ class GoodsController extends Controller
 
     public function destroy($id)
     {
-        //
+        try {
+            $datas = DB::table('barang')->where('id_barang', '=', $id);
+            $data = $datas->get();
+            $datas->delete();
+            if (File::exists(public_path($data[0]->gambar_barang))) {
+                File::delete(public_path($data[0]->gambar_barang));
+            }
+            return redirect('/goods')->with('info', "Barang berhasil dihapus");
+        } catch (\Exception $e) {
+            return redirect('/goods')->with('info', "Barang gagal dihapus");
+        }
     }
 }
