@@ -121,7 +121,7 @@ class GoodsController extends Controller
 
         DB::table('barang')->where('id_barang', '=', $id)->update($validateData);
 
-        return redirect('/goods')->with('info', "Barang berhasil ditambah");
+        return redirect('/goods')->with('info', "Barang berhasil diperbarui");
     }
 
     public function destroy($id)

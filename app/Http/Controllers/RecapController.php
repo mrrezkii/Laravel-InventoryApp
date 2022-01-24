@@ -33,7 +33,7 @@ class RecapController extends Controller
     {
         $dataBarang = DB::table('barang')->get();
         return view('pages.recap.create', [
-            'title' => 'Rekap',
+            'title' => 'Tambah Rekap',
             'active' => 'recap',
             'dataBarang' => $dataBarang
         ]);
@@ -48,7 +48,7 @@ class RecapController extends Controller
             'stok_akhir_rekap' => 'required|max:255',
         ]);
 
-        if ($request->stok_awal_rekap > $request->stok_akhir) {
+        if ((int)$request->stok_awal_rekap > (int)$request->stok_akhir_rekap) {
             $validateData['kode_status_rekap'] = 'INB';
         } else {
             $validateData['kode_status_rekap'] = 'OUB';
@@ -66,12 +66,34 @@ class RecapController extends Controller
 
     public function edit($id)
     {
-        //
+        $data = DB::table('rekap')->where('id_rekap', '=', $id)->first();
+        $dataBarang = DB::table('barang')->get();
+        return view('pages.recap.edit', [
+            'title' => 'Edit Rekap',
+            'active' => 'recap',
+            'data' => $data,
+            'dataBarang' => $dataBarang
+        ]);
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'kode_barang' => 'required|max:255',
+            'tanggal_rekap' => 'required',
+            'stok_awal_rekap' => 'required|max:255',
+            'stok_akhir_rekap' => 'required|max:255',
+        ]);
+
+        if ((int)$request->stok_awal_rekap > (int)$request->stok_akhir_rekap) {
+            $validateData['kode_status_rekap'] = 'INB';
+        } else {
+            $validateData['kode_status_rekap'] = 'OUB';
+        }
+
+        DB::table('rekap')->where('id_rekap', '=', $id)->update($validateData);
+
+        return redirect('/recap')->with('info', "Rekap berhasil diperbarui");
     }
 
     public function destroy($id)
