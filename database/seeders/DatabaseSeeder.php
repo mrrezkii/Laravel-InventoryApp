@@ -15,7 +15,10 @@ class DatabaseSeeder extends Seeder
     {
         $kategori = new KategoriSeeder();
         $barang = new BarangSeeder();
+        $statusRekap = new StatusRekapSeeder();
+
         $kategori->run();
         $barang->run();
+        $statusRekap->run();
     }
 }

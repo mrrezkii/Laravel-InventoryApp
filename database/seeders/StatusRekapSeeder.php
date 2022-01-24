@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\StatusRekap;
 use Illuminate\Database\Seeder;
 
 class StatusRekapSeeder extends Seeder
@@ -13,6 +14,13 @@ class StatusRekapSeeder extends Seeder
      */
     public function run()
     {
-        //
+        StatusRekap::create([
+            'kode_status_rekap' => 'INB',
+            'nama_status_rekap' => 'Inbound',
+        ]);
+        StatusRekap::create([
+            'kode_status_rekap' => 'OUB',
+            'nama_status_rekap' => 'Outbound',
+        ]);
     }
 }

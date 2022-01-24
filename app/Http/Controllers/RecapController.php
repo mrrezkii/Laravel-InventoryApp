@@ -31,12 +31,32 @@ class RecapController extends Controller
 
     public function create()
     {
-        dd('create');
+        $dataBarang = DB::table('barang')->get();
+        return view('pages.recap.create', [
+            'title' => 'Rekap',
+            'active' => 'recap',
+            'dataBarang' => $dataBarang
+        ]);
     }
 
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'kode_barang' => 'required|max:255',
+            'tanggal_rekap' => 'required',
+            'stok_awal_rekap' => 'required|max:255',
+            'stok_akhir_rekap' => 'required|max:255',
+        ]);
+
+        if ($request->stok_awal_rekap > $request->stok_akhir) {
+            $validateData['kode_status_rekap'] = 'INB';
+        } else {
+            $validateData['kode_status_rekap'] = 'OUB';
+        }
+
+        DB::table('rekap')->insert($validateData);
+
+        return redirect('/recap')->with('info', "Rekap berhasil ditambah");
     }
 
     public function show($id)
