@@ -5,7 +5,7 @@
 @section('container')
     <div class="row">
         @if(session()->has('info'))
-            <div class="col-md-10 offset-md-1 mt-5">
+            <div class="col-md-12 mt-5">
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
                     <ul>
                         {{ session('info') }}

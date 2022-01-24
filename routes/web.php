@@ -24,11 +24,11 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
-Route::resource('/category', CategoryController::class)->except(['show']);;
+Route::resource('/category', CategoryController::class)->except(['show']);
 Route::get('/categories/data', [CategoryController::class, 'data'])->name('category.data');
-Route::resource('/goods', GoodsController::class)->except(['show']);;;
+Route::resource('/goods', GoodsController::class)->except(['show']);
 Route::get('/goodss/data', [GoodsController::class, 'data'])->name('goods.data');
-Route::resource('/recap', RecapController::class);
+Route::resource('/recap', RecapController::class)->except(['show']);
 Route::get('/recaps/data', [RecapController::class, 'data'])->name('recap.data');
 Route::get('/account', [AccountController::class, 'index']);
 Route::get('/about', [AboutController::class, 'index']);

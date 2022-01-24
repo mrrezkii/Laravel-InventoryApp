@@ -98,6 +98,11 @@ class RecapController extends Controller
 
     public function destroy($id)
     {
-        //
+        try {
+            DB::table('rekap')->where('id_rekap', '=', $id)->delete();
+            return redirect('/recap')->with('info', "Rekap berhasil dihapus");
+        } catch (\Exception $e) {
+            return redirect('/recap')->with('info', "Rekap gagal dihapus");
+        }
     }
 }
