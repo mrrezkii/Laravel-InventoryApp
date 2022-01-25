@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('container')
+    @include('partials.overview')
     <div class="row">
         <div class="col-md-4 col-sm-12 mt-3">
             <div class="bg-white rounded p-3">

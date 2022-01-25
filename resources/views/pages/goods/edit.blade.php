@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('container')
+    @include('partials.overview')
     <div class="row">
         <div class="col-md-8 offset-md-2 mt-2">
             @if($errors->any())
