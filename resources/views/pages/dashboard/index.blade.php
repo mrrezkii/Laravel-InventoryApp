@@ -18,7 +18,7 @@
             <div class="bg-white rounded p-3">
                 <p class="text-title1 text-blue mb-3">Barang Masuk</p>
                 <div class="d-flex justify-content-between">
-                    <h1 class="text-blue">35<span class="text-title1">item</span></h1>
+                    <h1 class="text-blue">{{ $dataInbound }}<span class="text-title1">item</span></h1>
                     <img src="{{ url('/images/icon/ic_inbound.svg') }}" alt="all">
                 </div>
 
@@ -28,9 +28,9 @@
         </div>
         <div class="col-md-4 col-sm-12 mt-3">
             <div class="bg-white rounded p-3">
-                <p class="text-title1 text-blue mb-3">Barang Masuk</p>
+                <p class="text-title1 text-blue mb-3">Barang Keluar</p>
                 <div class="d-flex justify-content-between">
-                    <h1 class="text-blue">35<span class="text-title1">item</span></h1>
+                    <h1 class="text-blue">{{ $dataOutbound }}<span class="text-title1">item</span></h1>
                     <img src="{{ url('/images/icon/ic_outbound.svg') }}" alt="all">
                 </div>
 
@@ -49,7 +49,11 @@
                             <h2 class="m-auto text-white">{{ $stok->total }}</h2>
                             <p class="m-auto text-white">item</p>
                         </div>
-                        <h5 class="text-blue font-weight-bold m-auto">{{ $stok->nama_kategori }}</h5>
+                        <div class="flex-column text-right">
+                            <h5 class="text-blue font-weight-bold">{{ $stok->nama_kategori }}</h5>
+                            <h5 class="text-blue font-weight-bold {{ $stok->nama_status_rekap == 'Inbound' ? 'text-success' : 'text-danger' }}">{{ $stok->nama_status_rekap }}</h5>
+                        </div>
+
                     </div>
                 @endforeach
             </div>
