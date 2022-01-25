@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
@@ -22,6 +23,13 @@ class RecapController extends Controller
         $model = DB::table('rekap')->get();
         return DataTables::of($model)
             ->addIndexColumn()
+            ->addColumn('kode_status_rekap', function ($model) {
+                if ($model->kode_status_rekap == 'OUB') {
+                    return "Outbound";
+                } else {
+                    return "Inbound";
+                }
+            })
             ->addColumn('action', function ($model) {
                 return (string)view('pages.recap.action', ['model' => $model]);
             })
@@ -104,5 +112,14 @@ class RecapController extends Controller
         } catch (\Exception $e) {
             return redirect('/recap')->with('info', "Rekap gagal dihapus");
         }
+    }
+
+    public function exportToPDF()
+    {
+        $dataBarang = DB::table('rekap')->get();
+        $pdf = PDF::loadView('pages.recap.pdf', [
+            'dataBarang' => $dataBarang
+        ])->setPaper('a4', 'landscape');;
+        return $pdf->stream('rekap.pdf');
     }
 }
