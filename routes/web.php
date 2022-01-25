@@ -34,7 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/recaps/data', [RecapController::class, 'data'])->name('recap.data');
     Route::get('/about', [AboutController::class, 'index']);
     Route::get('/account', [AccountController::class, 'index']);
-    Route::put('/account', [AccountController::class, 'index']);
+    Route::put('/account', [AccountController::class, 'update']);
     Route::post('/logout', [LoginController::class, 'logout']);
 });
 

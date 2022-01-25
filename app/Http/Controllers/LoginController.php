@@ -28,7 +28,7 @@ class LoginController extends Controller
             return redirect()->intended('/dashboard');
         }
 
-        return back()->with('loginFailed', 'Email atau password tidak cocok');
+        return back()->with('info', 'Email atau password tidak cocok');
     }
 
     public function logout(Request $request)

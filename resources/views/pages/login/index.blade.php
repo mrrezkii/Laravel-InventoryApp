@@ -8,6 +8,18 @@
                 </div>
                 <div class="col-7 bg-white rounded-lg d-flex flex-column">
                     <div class="my-auto">
+                        @if(session()->has('info'))
+                            <div class="col-md-8 offset-md-2 mt-5 pt-4">
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <ul>
+                                        {{ session('info') }}
+                                    </ul>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        @endif
                         <h3 class="text-blue font-bolder font-weight-bold mb-5 text-center">Welcome</h3>
                         <form action="{{ url('/login') }}" method="POST" class="w-75 m-auto">
                             @csrf

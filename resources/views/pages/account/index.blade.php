@@ -9,6 +9,18 @@
                      height="100px" alt="avatar">
             </div>
         </div>
+        @if(session()->has('info'))
+            <div class="col-md-8 offset-md-2 mt-5 pt-4">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <ul>
+                        {{ session('info') }}
+                    </ul>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        @endif
         <div class="col-md-8 offset-md-2 mt-5 pt-4">
             @if($errors->any())
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -31,7 +43,7 @@
                     <input type="text"
                            class="form-control mt-1 text-title1 text-blue @error('name') is-invalid @enderror"
                            id="name" name="name"
-                           placeholder="Nama Admin" required>
+                           placeholder="Nama Admin" required value="{{ auth()->user()->name }}">
                     @error('name')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -43,7 +55,7 @@
                     <input type="email"
                            class="form-control mt-1 text-title1 text-blue @error('email') is-invalid @enderror"
                            id="email" name="email"
-                           placeholder="Email" required>
+                           placeholder="Email" required value="{{ auth()->user()->email }}">
                     @error('email')
                     <div class="invalid-feedback">
                         {{ $message }}
