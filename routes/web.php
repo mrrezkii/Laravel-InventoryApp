@@ -5,6 +5,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GoodsController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RecapController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +33,4 @@ Route::resource('/recap', RecapController::class)->except(['show']);
 Route::get('/recaps/data', [RecapController::class, 'data'])->name('recap.data');
 Route::get('/account', [AccountController::class, 'index']);
 Route::get('/about', [AboutController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index']);
