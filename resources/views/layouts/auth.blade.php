@@ -17,7 +17,7 @@
     @yield('custom-head')
 </head>
 
-<body class="bg-red">
+<body class="bg-red-2">
 <main>
     <div class="container-fluid">
         @yield('container')

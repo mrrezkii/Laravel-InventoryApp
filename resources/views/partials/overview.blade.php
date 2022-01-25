@@ -12,7 +12,7 @@
                              height="60px" alt="avatar">
                     </div>
                     <div class="col-md-9">
-                        <p class="text-title1 text-blue mb-1 text-truncate font-weight-bold">Lalala</p>
+                        <p class="text-title1 text-blue mb-1 text-truncate font-weight-bold">{{ auth()->user()->name }}</p>
                         <span class="text-body1 text-blue text-red">Admin</span>
                     </div>
                 </div>

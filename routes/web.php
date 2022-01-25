@@ -24,13 +24,24 @@ Route::get('/', function () {
     return redirect('/dashboard');
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index']);
-Route::resource('/category', CategoryController::class)->except(['show']);
-Route::get('/categories/data', [CategoryController::class, 'data'])->name('category.data');
-Route::resource('/goods', GoodsController::class)->except(['show']);
-Route::get('/goodss/data', [GoodsController::class, 'data'])->name('goods.data');
-Route::resource('/recap', RecapController::class)->except(['show']);
-Route::get('/recaps/data', [RecapController::class, 'data'])->name('recap.data');
-Route::get('/account', [AccountController::class, 'index']);
-Route::get('/about', [AboutController::class, 'index']);
-Route::get('/login', [LoginController::class, 'index']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::resource('/category', CategoryController::class)->except(['show']);
+    Route::get('/categories/data', [CategoryController::class, 'data'])->name('category.data');
+    Route::resource('/goods', GoodsController::class)->except(['show']);
+    Route::get('/goodss/data', [GoodsController::class, 'data'])->name('goods.data');
+    Route::resource('/recap', RecapController::class)->except(['show']);
+    Route::get('/recaps/data', [RecapController::class, 'data'])->name('recap.data');
+    Route::get('/about', [AboutController::class, 'index']);
+    Route::get('/account', [AccountController::class, 'index']);
+    Route::put('/account', [AccountController::class, 'index']);
+    Route::post('/logout', [LoginController::class, 'logout']);
+});
+
+Route::middleware(['guest'])->group(function () {
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::post('/login', [LoginController::class, 'authenticate']);
+});
+
+
+
