@@ -18,6 +18,10 @@
             </div>
         @endif
         <div class="col-md-12 mt-5 bg-white pt-2 rounded">
+            <a href="{{ url('/recaps/pdf') }}" class="btn btn-primary float-left mb-3">
+                <i class="fas fa-print"></i>
+                Cetak PDF
+            </a>
             <a href="{{ url('/recap/create') }}" class="btn btn-success float-right mb-3">
                 <i class="fas fa-plus-circle"></i>
                 Tambahkan
