@@ -116,8 +116,6 @@ class RecapController extends Controller
 
     public function exportToPDF()
     {
-
-
         $dataBarang = DB::table('rekap')
             ->join('barang', 'rekap.kode_barang', 'barang.kode_barang')
             ->select('rekap.kode_barang', 'barang.nama_barang', 'rekap.tanggal_rekap', 'rekap.stok_awal_rekap', 'rekap.stok_akhir_rekap', 'rekap.kode_status_rekap')
