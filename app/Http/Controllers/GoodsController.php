@@ -53,7 +53,7 @@ class GoodsController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'kode_barang' => 'required|max:255',
+            'kode_barang' => 'required|max:255|unique:barang,kode_barang',
             'kode_kategori' => 'required|max:255',
             'nama_barang' => 'required|max:255',
             'harga_barang' => 'required|numeric',
