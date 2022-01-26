@@ -52,8 +52,8 @@ class RecapController extends Controller
         $validateData = $request->validate([
             'kode_barang' => 'required|max:255',
             'tanggal_rekap' => 'required',
-            'stok_awal_rekap' => 'required|max:255',
-            'stok_akhir_rekap' => 'required|max:255',
+            'stok_awal_rekap' => 'required|numeric',
+            'stok_akhir_rekap' => 'required|numeric',
         ]);
 
         if ((int)$request->stok_awal_rekap > (int)$request->stok_akhir_rekap) {
@@ -89,8 +89,8 @@ class RecapController extends Controller
         $validateData = $request->validate([
             'kode_barang' => 'required|max:255',
             'tanggal_rekap' => 'required',
-            'stok_awal_rekap' => 'required|max:255',
-            'stok_akhir_rekap' => 'required|max:255',
+            'stok_awal_rekap' => 'required|numeric',
+            'stok_akhir_rekap' => 'required|numeric',
         ]);
 
         if ((int)$request->stok_awal_rekap > (int)$request->stok_akhir_rekap) {
@@ -116,7 +116,13 @@ class RecapController extends Controller
 
     public function exportToPDF()
     {
-        $dataBarang = DB::table('rekap')->get();
+
+
+        $dataBarang = DB::table('rekap')
+            ->join('barang', 'rekap.kode_barang', 'barang.kode_barang')
+            ->select('rekap.kode_barang', 'barang.nama_barang', 'rekap.tanggal_rekap', 'rekap.stok_awal_rekap', 'rekap.stok_akhir_rekap', 'rekap.kode_status_rekap')
+            ->get();
+
         $pdf = PDF::loadView('pages.recap.pdf', [
             'dataBarang' => $dataBarang
         ])->setPaper('a4', 'landscape');;

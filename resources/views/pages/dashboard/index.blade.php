@@ -51,7 +51,7 @@
                         </div>
                         <div class="flex-column text-right">
                             <h5 class="text-blue font-weight-bold">{{ $stok->nama_kategori }}</h5>
-                            <h5 class="text-blue font-weight-bold {{ $stok->nama_status_rekap == 'Inbound' ? 'text-success' : 'text-danger' }}">{{ $stok->nama_status_rekap }}</h5>
+                            <h5 class="text-blue font-weight-bold {{ $stok->nama_status_rekap == 'Inbound' ? 'text-success' : 'text-danger' }} d-none">{{ $stok->nama_status_rekap }}</h5>
                         </div>
 
                     </div>

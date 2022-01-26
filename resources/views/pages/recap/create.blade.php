@@ -40,7 +40,7 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="stok_awal_rekap" class="text-title1 text-blue">Stok Awal</label>
-                    <input type="number"
+                    <input type="text"
                            class="form-control mt-1 text-title1 text-blue @error('stok_awal_rekap') is-invalid @enderror"
                            id="stok_awal_rekap" name="stok_awal_rekap"
                            placeholder="Stok Awal" required value="{{ old('stok_awal_rekap')  }}">
@@ -52,7 +52,7 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="stok_akhir_rekap" class="text-title1 text-blue">Stok Akhir</label>
-                    <input type="number"
+                    <input type="text"
                            class="form-control mt-1 text-title1 text-blue @error('stok_akhir_rekap') is-invalid @enderror"
                            id="stok_akhir_rekap" name="stok_akhir_rekap"
                            placeholder="Stok Akhir" required value="{{ old('stok_akhir_rekap')  }}">

@@ -55,7 +55,7 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="harga_barang" class="text-title1 text-blue">Harga Barang</label>
-                    <input type="number"
+                    <input type="index"
                            class="form-control mt-1 text-title1 text-blue @error('harga_barang') is-invalid @enderror"
                            id="harga_barang" name="harga_barang"
                            placeholder="Harga Barang" required value="{{ $data->harga_barang  }}">
