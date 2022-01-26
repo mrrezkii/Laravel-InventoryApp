@@ -74,7 +74,7 @@ class GoodsController extends Controller
             DB::table('barang')->insert($validateData);
             return redirect('/goods')->with('info', "Barang berhasil ditambah");
         } catch (\Exception $e) {
-            return redirect('/goods')->with('info', "Kode barang tidak boleh sama");
+            return back()->withErrors(['kode_barang' => 'Kode barang tidak boleh sama']);
         }
 
     }
@@ -127,7 +127,7 @@ class GoodsController extends Controller
             DB::table('barang')->where('id_barang', '=', $id)->update($validateData);
             return redirect('/goods')->with('info', "Barang berhasil diperbarui");
         } catch (\Exception $e) {
-            return redirect('/goods')->with('info', "Kode barang tidak boleh sama");
+            return back()->withErrors(['kode_barang' => 'Kode barang tidak boleh sama']);
         }
 
     }

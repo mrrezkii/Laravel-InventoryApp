@@ -3,20 +3,8 @@
     @include('partials.overview')
     <div class="row">
         <div class="col-md-8 offset-md-2 mt-2">
-            @if($errors->any())
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @endif
             <h3 class="text-blue font-weight-bold mt-5 mb-5">
-                <a class="text-decoration-none" href="{{ url()->previous() }}"><i
+                <a class="text-decoration-none" href="{{ url('/recap') }}"><i
                         class="fas fa-arrow-left text-red"></i>&emsp;&emsp;</a>
                 Edit Rekap
             </h3>

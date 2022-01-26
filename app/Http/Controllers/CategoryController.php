@@ -48,7 +48,7 @@ class CategoryController extends Controller
             DB::table('kategori')->insert($validateData);
             return redirect('/category')->with('info', "Kategori berhasil ditambah");
         } catch (\Exception $e) {
-            return redirect('/category')->with('info', "Kode kategori tidak boleh sama");
+            return back()->withErrors(['kode_kategori' => 'Kode kategori tidak boleh sama']);
         }
     }
 
@@ -78,7 +78,7 @@ class CategoryController extends Controller
             DB::table('kategori')->where('id_kategori', '=', $id)->update($validateData);
             return redirect('/category')->with('info', "Kategori berhasil diperbarui");
         } catch (\Exception $e) {
-            return redirect('/category')->with('info', "Kode kategori tidak boleh sama");
+            return back()->withErrors(['kode_kategori' => 'Kode kategori tidak boleh sama']);
         }
     }
 

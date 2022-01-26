@@ -51,7 +51,6 @@ class DashboardController extends Controller
 
     public function getStokKategori()
     {
-
         return DB::table('barang')
             ->join('kategori', 'kategori.kode_kategori', 'barang.kode_kategori')
             ->join('rekap', 'rekap.kode_barang', 'barang.kode_barang')
