@@ -1,8 +1,8 @@
 @extends('layouts.auth')
 @section('container')
     <div class="row">
-        <div class="col-md-10 offset-md-1">
-            <div class="row mt-5 pt-5">
+        <div class="col-md-8 offset-md-2">
+            <div class="row mt-5 pt-3">
                 <div class="col-5 bg-red rounded-lg">
                     <img class="img-fluid" src="{{ url('/images/onboarding.svg') }}" alt="onboarding">
                 </div>
