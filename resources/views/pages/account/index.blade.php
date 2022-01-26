@@ -34,48 +34,47 @@
                     </button>
                 </div>
             @endif
-            <h3 class="text-blue font-weight-bold mb-4">Informasi Akun</h3>
-            <form action="{{ url('/account') }}" method="POST">
-                @csrf
-                @method("PUT")
-                <div class="form-group mb-3">
-                    <label for="name" class="text-title1 text-blue">Nama Admin</label>
-                    <input type="text"
-                           class="form-control mt-1 text-title1 text-blue @error('name') is-invalid @enderror"
-                           id="name" name="name"
-                           placeholder="Nama Admin" required value="{{ auth()->user()->name }}">
-                    @error('name')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
+            <h3 class="text-blue font-weight-bold mb-4">
+                Informasi Akun
+            </h3>
+            <div class="form-group mb-3">
+                <label for="name" class="text-title1 text-blue">Nama Admin</label>
+                <input type="text"
+                       class="form-control mt-1 text-title1 text-blue @error('name') is-invalid @enderror"
+                       id="name" name="name"
+                       placeholder="Nama Admin" required value="{{ auth()->user()->name }}" readonly>
+                @error('name')
+                <div class="invalid-feedback">
+                    {{ $message }}
                 </div>
-                <div class="form-group mb-3">
-                    <label for="email" class="text-title1 text-blue">Email</label>
-                    <input type="email"
-                           class="form-control mt-1 text-title1 text-blue @error('email') is-invalid @enderror"
-                           id="email" name="email"
-                           placeholder="Email" required value="{{ auth()->user()->email }}">
-                    @error('email')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
+                @enderror
+            </div>
+            <div class="form-group mb-3">
+                <label for="email" class="text-title1 text-blue">Email</label>
+                <input type="email"
+                       class="form-control mt-1 text-title1 text-blue @error('email') is-invalid @enderror"
+                       id="email" name="email"
+                       placeholder="Email" required value="{{ auth()->user()->email }}" readonly>
+                @error('email')
+                <div class="invalid-feedback">
+                    {{ $message }}
                 </div>
-                <div class="form-group mb-3 d-none">
-                    <label for="password" class="text-title1 text-blue">Password</label>
-                    <input type="password"
-                           class="form-control mt-1 text-title1 text-blue @error('password') is-invalid @enderror"
-                           id="password" name="password"
-                           placeholder="Password" required>
-                    @error('password')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
+                @enderror
+            </div>
+            <div class="form-group mb-3 d-none">
+                <label for="password" class="text-title1 text-blue">Password</label>
+                <input type="password"
+                       class="form-control mt-1 text-title1 text-blue @error('password') is-invalid @enderror"
+                       id="password" name="password"
+                       placeholder="Password" required>
+                @error('password')
+                <div class="invalid-feedback">
+                    {{ $message }}
                 </div>
-                <button class="btn bg-red text-white mt-4 w-25 text-title2" type="submit">Simpan</button>
-            </form>
+                @enderror
+            </div>
+            <a href="{{ url('/account/edit') }}"
+               class="btn bg-red text-white mt-4 w-25 text-title2 text-decoration-none">Edit</a>
         </div>
     </div>
 @endsection

@@ -35,7 +35,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/recaps/pdf', [RecapController::class, 'exportToPDF']);
     Route::get('/about', [AboutController::class, 'index']);
     Route::get('/account', [AccountController::class, 'index']);
-    Route::put('/account', [AccountController::class, 'update']);
+    Route::get('/account/edit', [AccountController::class, 'edit']);
+    Route::put('/account/edit', [AccountController::class, 'update']);
     Route::post('/logout', [LoginController::class, 'logout']);
 });
 

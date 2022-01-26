@@ -15,6 +15,14 @@ class AccountController extends Controller
         ]);
     }
 
+    public function edit()
+    {
+        return view('pages.account.edit', [
+            'title' => 'Edit Akun',
+            'active' => 'account',
+        ]);
+    }
+
     public function update(Request $request)
     {
         $request->validate([
