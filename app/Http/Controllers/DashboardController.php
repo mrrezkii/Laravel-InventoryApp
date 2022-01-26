@@ -51,12 +51,13 @@ class DashboardController extends Controller
 
     public function getStokKategori()
     {
+
         return DB::table('barang')
             ->join('kategori', 'kategori.kode_kategori', 'barang.kode_kategori')
             ->join('rekap', 'rekap.kode_barang', 'barang.kode_barang')
             ->join('status_rekap', 'status_rekap.kode_status_rekap', 'rekap.kode_status_rekap')
             ->select('kategori.nama_kategori', DB::raw('count(barang.kode_kategori) as total'), 'status_rekap.nama_status_rekap')
-            ->groupBy('kategori.nama_kategori', 'rekap.kode_status_rekap')
+            ->groupBy('kategori.nama_kategori', 'barang.kode_kategori', 'rekap.kode_status_rekap')
             ->get();
     }
 }

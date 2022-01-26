@@ -70,9 +70,13 @@ class GoodsController extends Controller
 
         $validateData['gambar_barang'] = "/$gambarBarangPath/$gambarBarangName";
 
-        DB::table('barang')->insert($validateData);
+        try {
+            DB::table('barang')->insert($validateData);
+            return redirect('/goods')->with('info', "Barang berhasil ditambah");
+        } catch (\Exception $e) {
+            return redirect('/goods')->with('info', "Kode barang tidak boleh sama");
+        }
 
-        return redirect('/goods')->with('info', "Barang berhasil ditambah");
     }
 
     public function show($id)
@@ -119,9 +123,13 @@ class GoodsController extends Controller
             $validateData['gambar_barang'] = "/$gambarBarangPath/$gambarBarangName";
         }
 
-        DB::table('barang')->where('id_barang', '=', $id)->update($validateData);
+        try {
+            DB::table('barang')->where('id_barang', '=', $id)->update($validateData);
+            return redirect('/goods')->with('info', "Barang berhasil diperbarui");
+        } catch (\Exception $e) {
+            return redirect('/goods')->with('info', "Kode barang tidak boleh sama");
+        }
 
-        return redirect('/goods')->with('info', "Barang berhasil diperbarui");
     }
 
     public function destroy($id)

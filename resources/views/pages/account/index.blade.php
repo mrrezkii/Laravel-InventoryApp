@@ -62,7 +62,7 @@
                     </div>
                     @enderror
                 </div>
-                <div class="form-group mb-3">
+                <div class="form-group mb-3 d-none">
                     <label for="password" class="text-title1 text-blue">Password</label>
                     <input type="password"
                            class="form-control mt-1 text-title1 text-blue @error('password') is-invalid @enderror"

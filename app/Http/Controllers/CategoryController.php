@@ -44,9 +44,12 @@ class CategoryController extends Controller
             'nama_kategori' => 'required|max:255',
         ]);
 
-        DB::table('kategori')->insert($validateData);
-
-        return redirect('/category')->with('info', "Kategori berhasil ditambah");
+        try {
+            DB::table('kategori')->insert($validateData);
+            return redirect('/category')->with('info', "Kategori berhasil ditambah");
+        } catch (\Exception $e) {
+            return redirect('/category')->with('info', "Kode kategori tidak boleh sama");
+        }
     }
 
     public function show($id)
@@ -71,9 +74,12 @@ class CategoryController extends Controller
             'nama_kategori' => 'required|max:255',
         ]);
 
-        DB::table('kategori')->where('id_kategori', '=', $id)->update($validateData);
-
-        return redirect('/category')->with('info', "Kategori berhasil diperbarui");
+        try {
+            DB::table('kategori')->where('id_kategori', '=', $id)->update($validateData);
+            return redirect('/category')->with('info', "Kategori berhasil diperbarui");
+        } catch (\Exception $e) {
+            return redirect('/category')->with('info', "Kode kategori tidak boleh sama");
+        }
     }
 
     public function destroy($id)
