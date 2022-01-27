@@ -27,22 +27,23 @@
                 Tambahkan
             </a>
         </div>
-        <div class="col-md-12 p-5 bg-white rounded">
-            <table id="myTable" class="table table-stripped text-grey" width="100%">
-                <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Kode Barang</th>
-                    <th>Tanggal Rekap</th>
-                    <th>Stok Awal</th>
-                    <th>Stok Akhir</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
-                </tr>
-                </thead>
-                <tbody>
+            <div class="col-md-12 p-5 bg-white rounded">
+                <table id="myTable" class="table table-stripped text-grey" width="100%">
+                    <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Kode Barang</th>
+                        <th>Nama Barang</th>
+                        <th>Tanggal Rekap</th>
+                        <th>Stok Awal</th>
+                        <th>Stok Akhir</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-                </tbody>
+                    </tbody>
             </table>
         </div>
 
@@ -60,6 +61,7 @@
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
                 {data: 'kode_barang', name: 'kode_barang'},
+                {data: 'nama_barang', name: 'nama_barang'},
                 {data: 'tanggal_rekap', name: 'tanggal_rekap'},
                 {data: 'stok_awal_rekap', name: 'stok_awal_rekap'},
                 {data: 'stok_akhir_rekap', name: 'stok_akhir_rekap'},

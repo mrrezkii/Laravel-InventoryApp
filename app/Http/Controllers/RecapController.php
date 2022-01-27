@@ -20,9 +20,16 @@ class RecapController extends Controller
 
     public function data()
     {
-        $model = DB::table('rekap')->get();
+        $model = DB::table('rekap')
+            ->join('barang', 'rekap.kode_barang', 'barang.kode_barang')
+            ->select('rekap.id_rekap', 'rekap.kode_barang', 'barang.nama_barang', 'rekap.tanggal_rekap', 'rekap.stok_awal_rekap', 'rekap.stok_akhir_rekap', 'rekap.kode_status_rekap')
+            ->get();
+
         return DataTables::of($model)
             ->addIndexColumn()
+            ->addColumn('nama_barang', function ($model) {
+                return $model->nama_barang;
+            })
             ->addColumn('kode_status_rekap', function ($model) {
                 if ($model->kode_status_rekap == 'OUB') {
                     return "Outbound";
